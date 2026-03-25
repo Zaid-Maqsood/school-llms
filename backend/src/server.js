@@ -9,8 +9,8 @@ async function start() {
     await pool.query('SELECT NOW()');
     console.log('Database connected.');
 
-    app.listen(PORT, () => {
-      console.log(`School MS API running on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`School MS API running on port ${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
     });
   } catch (err) {
