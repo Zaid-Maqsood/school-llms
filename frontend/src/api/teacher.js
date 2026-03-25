@@ -20,3 +20,11 @@ export const getTemplateQuestions = (subjectId) => api.get(`/teacher/templates/$
 
 // Dashboard stats
 export const getTeacherDashboardStats = () => api.get('/teacher/dashboard-stats');
+
+// Assignments
+export const getAssignments = () => api.get('/teacher/assignments');
+export const getAssignment = (id) => api.get(`/teacher/assignments/${id}`);
+export const createAssignment = (data) => api.post('/teacher/assignments', data);
+export const deleteAssignment = (id) => api.delete(`/teacher/assignments/${id}`);
+export const gradeSubmission = (assignmentId, subId, grade) =>
+  api.put(`/teacher/assignments/${assignmentId}/submissions/${subId}/grade`, { grade });

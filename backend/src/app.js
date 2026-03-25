@@ -15,7 +15,11 @@ const adminTeacherHoursRoutes = require('./routes/admin/teacherHours');
 const adminEvaluationsRoutes = require('./routes/admin/evaluations');
 const teacherStudentsRoutes = require('./routes/teacher/students');
 const teacherEvaluationsRoutes = require('./routes/teacher/evaluations');
+const teacherAssignmentsRoutes = require('./routes/teacher/assignments');
 const parentChildrenRoutes = require('./routes/parent/children');
+const parentAssignmentsRoutes = require('./routes/parent/assignments');
+const adminGradesRoutes = require('./routes/admin/grades');
+const adminCourseMaterialsRoutes = require('./routes/admin/courseMaterials');
 const sharedRoutes = require('./routes/shared');
 
 const app = express();
@@ -55,9 +59,15 @@ app.use('/api/admin/evaluations', requireRole('admin'), adminEvaluationsRoutes);
 // Teacher routes
 app.use('/api/teacher/students', requireRole('teacher'), teacherStudentsRoutes);
 app.use('/api/teacher/evaluations', requireRole('teacher'), teacherEvaluationsRoutes);
+app.use('/api/teacher/assignments', requireRole('teacher'), teacherAssignmentsRoutes);
 
 // Parent routes
 app.use('/api/parent/children', requireRole('parent'), parentChildrenRoutes);
+app.use('/api/parent/assignments', requireRole('parent'), parentAssignmentsRoutes);
+
+// Admin extra routes
+app.use('/api/admin/grades', requireRole('admin'), adminGradesRoutes);
+app.use('/api/admin/course-materials', requireRole('admin'), adminCourseMaterialsRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {

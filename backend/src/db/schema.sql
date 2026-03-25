@@ -157,6 +157,55 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- Course material folders
+CREATE TABLE IF NOT EXISTS course_folders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name VARCHAR(200) NOT NULL,
+  parent_id UUID REFERENCES course_folders(id) ON DELETE CASCADE,
+  created_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Course material files
+CREATE TABLE IF NOT EXISTS course_files (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  folder_id UUID NOT NULL REFERENCES course_folders(id) ON DELETE CASCADE,
+  original_name VARCHAR(500) NOT NULL,
+  file_name VARCHAR(500) NOT NULL,
+  file_type VARCHAR(50),
+  file_size BIGINT DEFAULT 0,
+  video_url VARCHAR(1000),
+  uploaded_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Assignments
+CREATE TABLE IF NOT EXISTS assignments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title VARCHAR(300) NOT NULL,
+  subject VARCHAR(100),
+  due_date DATE,
+  instructions TEXT,
+  teacher_user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Assignment submissions
+CREATE TABLE IF NOT EXISTS assignment_submissions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  assignment_id UUID NOT NULL REFERENCES assignments(id) ON DELETE CASCADE,
+  parent_user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  student_name VARCHAR(200),
+  file_name VARCHAR(500),
+  file_path VARCHAR(1000),
+  notes TEXT,
+  grade VARCHAR(10),
+  status VARCHAR(20) NOT NULL DEFAULT 'submitted',
+  submitted_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(assignment_id, parent_user_id)
+);
+
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_student_teachers_student ON student_teachers(student_id);
 CREATE INDEX IF NOT EXISTS idx_student_teachers_teacher ON student_teachers(teacher_user_id);

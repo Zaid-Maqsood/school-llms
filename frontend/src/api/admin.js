@@ -41,3 +41,17 @@ export const getDashboardStats = () => api.get('/admin/dashboard-stats');
 
 // Export logs
 export const getExportLogs = () => api.get('/admin/export-logs');
+
+// Grades (from evaluations)
+export const getGrades = () => api.get('/admin/grades');
+
+// Course Materials
+export const getCourseMaterials = () => api.get('/admin/course-materials');
+export const createFolder = (data) => api.post('/admin/course-materials/folders', data);
+export const uploadCourseFile = (folderId, formData) =>
+  api.post(`/admin/course-materials/folders/${folderId}/files`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+export const deleteCourseFile = (fileId) => api.delete(`/admin/course-materials/files/${fileId}`);
+export const deleteCourseFolder = (folderId) => api.delete(`/admin/course-materials/folders/${folderId}`);
+export const getCourseFileDownloadUrl = (fileId) => `/api/admin/course-materials/files/${fileId}/download`;
