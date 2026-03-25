@@ -21,16 +21,8 @@ const sharedRoutes = require('./routes/shared');
 const app = express();
 
 // Middleware
-const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173').split(',').map(s => s.trim());
 app.use(cors({
-  origin: (origin, cb) => {
-    // Allow requests with no origin (curl, Postman, server-side) or matching origins
-    if (!origin || allowedOrigins.includes(origin) || (process.env.NODE_ENV === 'development' && /^http:\/\/localhost:\d+$/.test(origin))) {
-      cb(null, true);
-    } else {
-      cb(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
