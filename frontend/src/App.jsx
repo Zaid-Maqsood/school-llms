@@ -16,6 +16,11 @@ import AdminTemplates from './pages/admin/Templates';
 import AdminTeacherHours from './pages/admin/TeacherHours';
 import AdminExports from './pages/admin/Exports';
 import AdminEvaluations from './pages/admin/Evaluations';
+import AdminCourses from './pages/admin/Courses';
+import AdminCourseMaterials from './pages/admin/CourseMaterials';
+import AdminGrades from './pages/admin/Grades';
+import AdminIntegrations from './pages/admin/Integrations';
+import AdminAnnouncements from './pages/admin/Announcements';
 
 // Teacher
 import TeacherDashboard from './pages/teacher/Dashboard';
@@ -23,12 +28,17 @@ import TeacherStudents from './pages/teacher/Students';
 import TeacherStudentDetail from './pages/teacher/StudentDetail';
 import NewEvaluation from './pages/teacher/NewEvaluation';
 import EvaluationHistory from './pages/teacher/EvaluationHistory';
+import TeacherAssignments from './pages/teacher/Assignments';
+import TeacherAnnouncements from './pages/teacher/Announcements';
 
 // Parent
 import ParentDashboard from './pages/parent/Dashboard';
 import ParentChildren from './pages/parent/Children';
 import ChildEvaluations from './pages/parent/ChildEvaluations';
 import ChildSummary from './pages/parent/ChildSummary';
+import ParentAssignments from './pages/parent/Assignments';
+import ParentAnnouncements from './pages/parent/Announcements';
+import ParentHelpdesk from './pages/parent/Helpdesk';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -52,6 +62,11 @@ function AppRoutes() {
               <Route path="teacher-hours" element={<AdminTeacherHours />} />
               <Route path="exports" element={<AdminExports />} />
               <Route path="evaluations" element={<AdminEvaluations />} />
+              <Route path="courses" element={<AdminCourses />} />
+              <Route path="course-materials" element={<AdminCourseMaterials />} />
+              <Route path="grades" element={<AdminGrades />} />
+              <Route path="integrations" element={<AdminIntegrations />} />
+              <Route path="announcements" element={<AdminAnnouncements />} />
             </Routes>
           </Layout>
         </ProtectedRoute>
@@ -67,6 +82,8 @@ function AppRoutes() {
               <Route path="students/:id" element={<TeacherStudentDetail />} />
               <Route path="evaluations" element={<EvaluationHistory />} />
               <Route path="evaluations/new" element={<NewEvaluation />} />
+              <Route path="assignments" element={<TeacherAssignments />} />
+              <Route path="announcements" element={<TeacherAnnouncements />} />
             </Routes>
           </Layout>
         </ProtectedRoute>
@@ -81,6 +98,9 @@ function AppRoutes() {
               <Route path="children" element={<ParentChildren />} />
               <Route path="children/:id/evaluations" element={<ChildEvaluations />} />
               <Route path="children/:id/summary" element={<ChildSummary />} />
+              <Route path="assignments" element={<ParentAssignments />} />
+              <Route path="announcements" element={<ParentAnnouncements />} />
+              <Route path="helpdesk" element={<ParentHelpdesk />} />
             </Routes>
           </Layout>
         </ProtectedRoute>

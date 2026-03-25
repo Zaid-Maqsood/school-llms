@@ -6,22 +6,32 @@ const adminNav = [
   { path: '/admin', label: 'Dashboard', icon: '▤' },
   { path: '/admin/users', label: 'Users', icon: '👥' },
   { path: '/admin/students', label: 'Students', icon: '🎒' },
-  { path: '/admin/subjects', label: 'Subjects', icon: '📚' },
+  { path: '/admin/courses', label: 'Courses', icon: '📚' },
+  { path: '/admin/course-materials', label: 'Course Materials', icon: '📁' },
+  { path: '/admin/grades', label: 'Grades', icon: '🏆' },
+  { path: '/admin/announcements', label: 'Announcements', icon: '📢' },
+  { path: '/admin/subjects', label: 'Subjects', icon: '🔖' },
   { path: '/admin/templates', label: 'Eval Templates', icon: '📋' },
   { path: '/admin/teacher-hours', label: 'Teacher Hours', icon: '⏱' },
+  { path: '/admin/integrations', label: 'Integrations', icon: '🔌' },
   { path: '/admin/exports', label: 'Exports', icon: '📤' },
 ];
 
 const teacherNav = [
   { path: '/teacher', label: 'Dashboard', icon: '▤' },
   { path: '/teacher/students', label: 'My Students', icon: '🎒' },
+  { path: '/teacher/assignments', label: 'Assignments', icon: '📝' },
+  { path: '/teacher/announcements', label: 'Announcements', icon: '📢' },
   { path: '/teacher/evaluations/new', label: 'New Evaluation', icon: '✏️' },
-  { path: '/teacher/evaluations', label: 'History', icon: '📋' },
+  { path: '/teacher/evaluations', label: 'Eval History', icon: '📋' },
 ];
 
 const parentNav = [
   { path: '/parent', label: 'Dashboard', icon: '▤' },
   { path: '/parent/children', label: 'My Children', icon: '👶' },
+  { path: '/parent/assignments', label: 'Assignments', icon: '📝' },
+  { path: '/parent/announcements', label: 'Announcements', icon: '📢' },
+  { path: '/parent/helpdesk', label: 'Helpdesk', icon: '🎧' },
 ];
 
 const navByRole = { admin: adminNav, teacher: teacherNav, parent: parentNav };
